@@ -6,11 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [daftarBelanja::class], version = 1)
+
 abstract class daftarBelanjaDB : RoomDatabase() {
     abstract fun funDaftarBelanjaDAO() : daftarBelanjaDAO
+
     companion object {
         @Volatile
         private var INSTANCE: daftarBelanjaDB? = null
+
         @JvmStatic
         fun getDatabase(context: Context): daftarBelanjaDB {
             if(INSTANCE == null) {
@@ -25,5 +28,6 @@ abstract class daftarBelanjaDB : RoomDatabase() {
             }
             return INSTANCE as daftarBelanjaDB
         }
+
     }
 }
