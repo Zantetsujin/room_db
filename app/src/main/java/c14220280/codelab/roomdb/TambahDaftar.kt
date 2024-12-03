@@ -1,6 +1,7 @@
 package c14220280.codelab.roomdb
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,14 +28,18 @@ class TambahDaftar : AppCompatActivity() {
         var tanggal = getCurrentDate()
         var _etItem = findViewById<EditText>(R.id.etItem)
         var _etJumlah = findViewById<EditText>(R.id.etJumlah)
-        CoroutineScope(Dispatchers.IO).async {
-            DB.funDaftarBelanjaDAO().insert(
-                daftarBelanja(
-                    tanggal = tanggal,
-                    item = _etItem.text.toString(),
-                    jumlah = _etJumlah.text.toString(),
+        var _btnTambah = findViewById<Button>(R.id.btnTambah)
+        _btnTambah.setOnClickListener() {
+            CoroutineScope(Dispatchers.IO).async {
+                DB.funDaftarBelanjaDAO().insert(
+                    daftarBelanja(
+                        tanggal = tanggal,
+                        item = _etItem.text.toString(),
+                        jumlah = _etJumlah.text.toString(),
+                        status = 0
+                    )
                 )
-            )
+            }
         }
     }
 }
