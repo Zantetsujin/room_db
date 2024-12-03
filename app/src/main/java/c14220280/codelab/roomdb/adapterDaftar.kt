@@ -22,6 +22,10 @@ class adapterDaftar(private val daftarBelanja: MutableList<daftarBelanja>): Recy
         return ListViewHolder(view)
     }
 
+    override fun getItemCount(): Int {
+        return daftarBelanja.size
+    }
+
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var _tvItemBarang = itemView.findViewById<TextView>(R.id.tvNamaBarang)
         var _tvJumlahBarang = itemView.findViewById<TextView>(R.id.tvJumlahBarang)
@@ -47,10 +51,6 @@ class adapterDaftar(private val daftarBelanja: MutableList<daftarBelanja>): Recy
         holder._btnDelete.setOnClickListener() {
             onItemClickCallBack.delData(daftar)
         }
-    }
-
-    override fun getItemCount(): Int {
-        return daftarBelanja.size
     }
 
     interface OnItemClickCallBack {
